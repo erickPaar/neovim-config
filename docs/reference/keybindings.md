@@ -121,10 +121,15 @@ JSON files fold by structure: each object and array is a fold. They open with ev
 
 | Key | Mode | Action |
 |-----|------|--------|
-| `za` | Normal | Toggle the fold under the cursor |
-| `zc` / `zo` | Normal | Close / open the fold under the cursor |
 | `zM` / `zR` | Normal | Close / open every fold |
+| `zm` / `zr` | Normal | Close / open one level everywhere |
+| `zc` / `zo` | Normal | Close / open the fold under the cursor |
+| `zC` / `zO` | Normal | Close / open the fold under the cursor and every fold inside it |
+| `za` / `zA` | Normal | Toggle the fold under the cursor (`zA` includes the folds inside) |
 | `zj` / `zk` | Normal | Move to the next / previous fold |
+| `[z` / `]z` | Normal | Move to the start / end of the current fold |
+
+To read a large file: `zM`, then `zr` for the top-level keys, then `zo` or `zO` on the part you want.
 
 ### CSV / TSV
 

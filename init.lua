@@ -23,3 +23,6 @@ require("lazy").setup({
 
 -- Load keymaps after plugins
 require("config.keymaps")
+
+-- :Jq, run jq on the buffer or selection (lua/config/jq.lua)
+require("config.jq")

@@ -63,30 +63,62 @@ The file is formatted with `prettier` every time you save. To format it without 
 
 ## Folding
 
-Every object and array is a fold. Files open with all folds open.
+Every object and array is a fold, nested as deep as the JSON goes. A file of AWS task definitions, for example, folds five levels: the file, the list of containers, each container, its environment list, and each variable. Files open with all folds open.
 
 | Key | Action |
 |-----|--------|
-| `za` | Toggle the fold under the cursor |
-| `zc` / `zo` | Close / open the fold under the cursor |
-| `zM` / `zR` | Close / open every fold |
+| `zM` | Fold everything |
+| `zr` | Open **one more level** everywhere (repeat to go deeper) |
+| `zm` | Close one level everywhere |
+| `zR` | Open everything |
+| `zo` / `zc` | Open / close the fold under the cursor |
+| `zO` / `zC` | Open / close the fold under the cursor **and every fold inside it** |
+| `za` / `zA` | Toggle the fold under the cursor (`zA` includes the folds inside) |
 | `zj` / `zk` | Move to the next / previous fold |
+| `[z` / `]z` | Move to the start / end of the fold the cursor is in |
 
-`zM` followed by `zo` on the top-level object shows just the first level of keys, which is a quick way to see a large file's shape.
+### Reading a large file
+
+1. Press `zM`, then `zr`. Only the top-level keys are left, and each nested object or array is a single line ending in `...`.
+2. Move to the part you want and press `zo` to open one level of it, or `zO` to open all of it.
+3. Press `zM` to collapse everything again.
+
+To jump straight to a depth, use `:set foldlevel=1` (top-level keys only) or `:set foldlevel=2` (one level more).
+
+`:set foldcolumn=auto:5` adds a narrow column on the left that marks each fold. You can click it with the mouse to open or close a fold.
 
 Folding is set in `lua/config/options.lua`, for the `json` and `jsonc` filetypes.
 
 ## Querying with jq
 
-To look at part of a file without changing it, run `jq` on the saved file. `%` is the current file's name.
+### :Jq (recommended)
 
-```vim
-:!jq '.dependencies' %              " one key
-:!jq '.items | length' %            " how many items an array has
-:!jq '.items[0]' %                  " the first item
-:!jq '[.items[] | .name]' %         " one field from every item
-:!jq 'keys' %                       " the top-level keys
-```
+`:Jq` runs `jq` on the buffer and shows the result in a side window. The buffer doesn't need to be saved, so it works on a scratch buffer too. Running `:Jq` again replaces the result in the same window, and the cursor stays in your JSON so you can keep refining the query.
+
+| Command | Result |
+|---------|--------|
+| `:Jq .items[0]` | Show the first item |
+| `:Jq [.items[] \| {name, image}]` | Show two fields from every item |
+| `:Jq -r .items[].name` | Plain text, one name per line (jq options go before the filter) |
+| `:Jq` | Pretty-print the whole buffer in the side window |
+| `:'<,'>Jq .` | Only the selected lines (select with `V`; they must be valid JSON on their own) |
+| `:Jq! -S .` | Replace the buffer with the result, here with the keys sorted. `u` undoes it. |
+
+The result window is a normal buffer: search it, yank from it, or close it with `:q`. A jq error appears as a message, and your buffer isn't changed. The command is defined in `lua/config/jq.lua`.
+
+### Shell commands
+
+To look at part of a saved file without changing it, run `jq` on it directly. `%` is the current file's name.
+
+| Command | Shows |
+|---------|-------|
+| `:!jq '.dependencies' %` | One key |
+| `:!jq '.items \| length' %` | How many items an array has |
+| `:!jq '.items[0]' %` | The first item |
+| `:!jq '[.items[] \| .name]' %` | One field from every item |
+| `:!jq 'keys' %` | The top-level keys |
+
+Copy only the command. Don't add a `"` comment after it: in a `:!` command, everything after `!` goes to the shell, and a stray `"` breaks it.
 
 To replace the buffer with the result, use `:%!jq '<query>'` instead. Press `u` to get the original back.
 
