@@ -47,3 +47,19 @@ vim.opt.undofile = true
 -- Misc
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+
+-- jsonc (JSON with comments) uses the json treesitter parser, which already accepts comments;
+-- nvim-treesitter's own jsonc parser fails to download.
+vim.treesitter.language.register("json", "jsonc")
+
+-- Folding for JSON: fold by structure (each object and array) with treesitter.
+-- foldlevel 99 opens the file with every fold open; zM closes them all.
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("json_folding", { clear = true }),
+  pattern = { "json", "jsonc" },
+  callback = function()
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.opt_local.foldlevel = 99
+  end,
+})

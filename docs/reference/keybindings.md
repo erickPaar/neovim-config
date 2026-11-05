@@ -115,6 +115,28 @@ See [Editing Guide](../tasks/editing.md) for details.
 | `Ctrl+Space` | Visual | Expand selection |
 | `Backspace` | Visual | Shrink selection |
 
+### Folding (JSON)
+
+JSON files fold by structure: each object and array is a fold. They open with every fold open. Formatting, error navigation and `jq` are in the [JSON guide](../languages/json.md).
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `za` | Normal | Toggle the fold under the cursor |
+| `zc` / `zo` | Normal | Close / open the fold under the cursor |
+| `zM` / `zR` | Normal | Close / open every fold |
+| `zj` / `zk` | Normal | Move to the next / previous fold |
+
+### CSV / TSV
+
+CSV and TSV files open as an aligned table. The file itself is unchanged. More in the [CSV guide](../languages/csv.md).
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>tc` | Normal | Toggle the table view |
+| `Tab` / `Shift+Tab` | Normal, Visual | Move to the end of the next / previous field |
+| `Enter` / `Shift+Enter` | Normal, Visual | Same field in the next / previous row |
+| `if` / `af` | Operator, Visual | Field text object, without / with its comma (`cif`, `dif`, `vaf`) |
+
 ### Completion
 
 | Key | Mode | Action |

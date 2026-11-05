@@ -33,6 +33,10 @@ related:
 │       ├── ui.lua           # UI enhancements
 │       ├── which-key.lua    # Keybinding hints
 │       ├── alpha.lua        # Dashboard
+│       ├── bufferline.lua   # Buffer tabs
+│       ├── markview.lua     # Markdown preview
+│       ├── csv.lua          # CSV/TSV table view (csvview.nvim)
+│       ├── claudecode.lua   # Claude Code integration
 │       └── editing.lua      # Editing utilities
 └── docs/                    # Documentation
 ```

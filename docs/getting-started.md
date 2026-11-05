@@ -14,13 +14,27 @@ related:
 - **Neovim** >= 0.9.0
 - **Git** - For cloning and plugin management
 - **A Nerd Font** - For icons (recommended: JetBrains Mono Nerd Font)
+- **Node.js >= 14** - prettier, jsonls, pyright, ts_ls and eslint_d run on Node. Ubuntu 22.04's own `nodejs` package is version 12, which is too old. These tools then fail without a clear message: nothing gets formatted, and their language servers don't start. Check with `node --version`. To install the current long-term-support version from NodeSource:
+
+  ```bash
+  sudo apt remove nodejs npm libnode-dev libnode72   # only if Ubuntu's old Node is installed
+  curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+  sudo apt install -y nodejs
+  ```
 
 ## Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:ersantana361/neovim-config.git ~/.config/nvim
+git clone git@github.com:erickPaar/neovim-config.git ~/.config/nvim
+```
+
+This repository is a fork. GitHub shows the original under the repository name ("forked from …"). To pull in changes made there:
+
+```bash
+git remote add upstream <URL of the original repository>   # once
+git fetch upstream && git merge upstream/main
 ```
 
 ### 2. Install System Dependencies
@@ -40,6 +54,9 @@ sudo apt install fd-find
 
 # xclip - System clipboard support
 sudo apt install xclip
+
+# jq - Reshaping and querying JSON (see languages/json.md)
+sudo apt install jq
 ```
 
 ### 3. First Launch

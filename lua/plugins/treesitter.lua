@@ -25,6 +25,8 @@ return {
         "xml",
         "yaml",
         "json",
+        "csv",
+        "tsv",
         "toml",
         "html",
         "css",

@@ -9,8 +9,10 @@ This is a modular Neovim configuration for multi-language development (Kotlin, J
 ## Installation
 
 ```bash
-git clone git@github.com:ersantana361/neovim-config.git ~/.config/nvim
+git clone git@github.com:erickPaar/neovim-config.git ~/.config/nvim
 ```
+
+`origin` is this fork (erickPaar/neovim-config); `upstream` is the repository it was forked from.
 
 ## Dependencies
 
@@ -18,6 +20,8 @@ git clone git@github.com:ersantana361/neovim-config.git ~/.config/nvim
   ```bash
   sudo apt install ripgrep
   ```
+- **Node.js >= 14** - prettier, jsonls, pyright, ts_ls and eslint_d run on it; Ubuntu 22.04's own Node 12 makes them fail silently. See docs/getting-started.md.
+- **jq** - Used by the JSON guide (docs/languages/json.md) for reshaping and queries.
 
 ## Architecture
 
@@ -83,6 +87,6 @@ Full documentation is available in the `docs/` folder:
 
 - [Getting Started](docs/getting-started.md) - Installation and setup
 - [Architecture](docs/architecture.md) - Configuration structure
-- [Keybindings](docs/keybindings.md) - Complete keybinding reference
+- [Keybindings](docs/reference/keybindings.md) - Complete keybinding reference
 - [Plugins](docs/plugins/README.md) - Plugin documentation
 - [Languages](docs/languages/README.md) - Language-specific setup

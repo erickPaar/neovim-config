@@ -25,7 +25,8 @@ This configuration provides full IDE-like support for multiple languages.
 
 | Format | Formatter | Syntax Highlighting |
 |--------|-----------|---------------------|
-| JSON | prettier | Treesitter |
+| [JSON / jsonc](json.md) | prettier (jsonls checks errors; folding by structure) | Treesitter |
+| [CSV / TSV](csv.md) | - (aligned table view with csvview.nvim) | Treesitter |
 | XML | xmllint | Treesitter |
 | YAML | - | Treesitter |
 | TOML | - | Treesitter |

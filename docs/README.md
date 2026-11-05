@@ -79,6 +79,7 @@ Leader key: `<Space>`
 - [Language Overview](languages/README.md)
 - [Kotlin](languages/kotlin.md) | [Java](languages/java.md)
 - [Python](languages/python.md) | [TypeScript](languages/typescript.md)
+- [JSON](languages/json.md) | [CSV / TSV](languages/csv.md)
 
 ## Project Structure
 

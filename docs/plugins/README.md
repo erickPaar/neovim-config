@@ -50,6 +50,7 @@ For usage guides, see [Task Guides](../tasks/README.md).
 | nvim-surround | Surround text objects | [tasks/editing.md](../tasks/editing.md) |
 | vim-illuminate | Highlight references | [tasks/navigation.md](../tasks/navigation.md) |
 | markview.nvim | Markdown preview | [markview.md](markview.md) |
+| csvview.nvim | CSV/TSV as an aligned table | [../languages/csv.md](../languages/csv.md) |
 
 ### AI Agents
 

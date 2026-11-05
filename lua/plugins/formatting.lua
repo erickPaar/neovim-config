@@ -24,9 +24,21 @@ return {
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         json = { "prettier" },
+        jsonc = { "prettier" },
         xml = { "xmllint" },
         css = { "prettier" },
         html = { "prettier" },
+      },
+      formatters = {
+        prettier = {
+          -- prettier adds trailing commas to jsonc, which allows them; keep jsonc like plain JSON
+          prepend_args = function(_, ctx)
+            if vim.bo[ctx.buf].filetype == "jsonc" then
+              return { "--trailing-comma", "none" }
+            end
+            return {}
+          end,
+        },
       },
       format_on_save = {
         timeout_ms = 3000,
